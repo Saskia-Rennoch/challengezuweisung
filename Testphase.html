@@ -1,258 +1,318 @@
 <!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Projektvergabe · Übersicht</title><style>:root{color-scheme:light;--page:#f7f6f0;--paper:#fffef9;--ink:#232f2a;--muted:#526158;--line:#d9dfd6;--accent:#215646;--soft:#e4eee6;--warm:#fff1d6;--brown:#684609;--danger:#8a342a}*{box-sizing:border-box}body{margin:0;background:var(--page);color:var(--ink);font:16px/1.48 'Segoe UI',sans-serif}button,select,input{font:inherit;color:inherit}button,select,input{min-height:42px}button{cursor:pointer;border:1px solid var(--line);border-radius:7px;padding:.5rem .82rem;background:var(--paper);font-weight:600}button:hover:not(:disabled){background:var(--soft)}button:disabled{opacity:.49;cursor:not-allowed}button.primary{background:var(--accent);color:white;border-color:var(--accent)}button.primary:hover:not(:disabled){background:#164435}button.ghost{background:transparent}button.link{min-height:32px;border:0;padding:.2rem .45rem;background:transparent;color:var(--accent)}:focus-visible{outline:3px solid #8a5808;outline-offset:3px}select,input:not([type=checkbox]){padding:.45rem .65rem;border:1px solid #abb8ae;border-radius:7px;background:white;max-width:100%}input[type=checkbox]{min-height:auto;accent-color:var(--accent);width:1.1rem;height:1.1rem}a{color:var(--accent)}[hidden]{display:none!important}.shell{width:min(1140px,calc(100% - 48px));margin-inline:auto}.mast{background:var(--paper);border-bottom:1px solid var(--line)}.mast-inner,.brand,.row,.toolbar,nav{display:flex;align-items:center;gap:12px}.mast-inner,.spread{justify-content:space-between}.mast-inner{min-height:74px}.brand{gap:10px}.brand small{display:block;color:var(--muted);font-size:.77rem}.mark{background:var(--accent);color:white;border-radius:7px;width:36px;height:36px;display:grid;place-items:center;font:22px Georgia,serif}nav{gap:4px;background:#eeeee7;border-radius:9px;padding:4px}nav button{min-height:36px;border-color:transparent;background:transparent}nav button[aria-pressed=true]{background:var(--paper);border-color:var(--line);color:var(--accent)}h1,h2,h3,p{margin:0}h1,h2{font-family:Georgia,serif;font-weight:500}h1{font-size:clamp(2rem,5vw,3.35rem);letter-spacing:-.037em;line-height:1.12}h2{font-size:1.65rem;line-height:1.22}h3{font-size:1rem}.intro{margin:35px 0 23px;align-items:end}.intro p{margin-top:9px}.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.72rem;font-weight:700;color:var(--accent);margin-bottom:7px}.muted,.hint{color:var(--muted)}.hint,small{font-size:.85rem}.toolbar,.wrap{flex-wrap:wrap}.toolbar{gap:8px}.panel{border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:20px;min-width:0}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:10px;background:var(--paper);margin-bottom:18px}.metric{padding:12px 18px}.metric+.metric{border-left:1px solid var(--line)}.metric strong{display:block;font-size:1.4rem;font-variant-numeric:tabular-nums}.metric span{color:var(--muted);font-size:.85rem}.grid{display:grid;grid-template-columns:minmax(280px,.9fr) minmax(0,1.3fr);gap:16px;align-items:start}.stack>*+*{margin-top:13px}.project-list{display:grid;gap:3px}.project{display:grid;grid-template-columns:minmax(80px,1fr) minmax(35px,1fr) 28px 45px;align-items:center;gap:8px;text-align:left;font-weight:500;background:transparent;border-color:transparent;padding:7px 8px;width:100%}.project[aria-pressed=true]{background:var(--soft);border-color:#a8c5b5;font-weight:700}.bar{height:7px;display:block;border-radius:20px;background:#e8ece5;overflow:hidden}.bar i{display:block;height:100%;background:#52906f}.numeric{text-align:right;font-variant-numeric:tabular-nums}.tag{display:inline-block;background:var(--soft);color:var(--accent);border-radius:5px;padding:.12rem .43rem;font-size:.77rem;font-weight:650;white-space:nowrap}.tag.warm{background:var(--warm);color:var(--brown)}.tag.alert{background:#f8e7e3;color:var(--danger)}.members{list-style:none;margin:5px 0 0;padding:0}.members li{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:42px;padding:5px 0;border-bottom:1px solid var(--line)}.members li:last-child{border-bottom:0}.rule{border-top:1px solid var(--line);padding-top:13px}.picker select{flex:1;min-width:185px}.comparison{display:grid;grid-template-columns:repeat(9,1fr);gap:3px;margin-top:7px}.comparison span{padding:5px 0;text-align:center;background:var(--soft);border-radius:4px;font-size:.85rem}.comparison small{display:block;color:var(--muted);font-size:.7rem}.extra{display:flex;align-items:center;gap:8px}.footer{padding:23px 0;color:var(--muted);font-size:.8rem}.footer span{padding-inline:.35rem}.notice{position:fixed;z-index:2;right:19px;bottom:19px;max-width:min(480px,calc(100% - 38px));background:#214536;color:white;border-radius:8px;padding:13px 16px;box-shadow:0 3px 16px #0002}.notice.error{background:#772f25}.student{max-width:680px}.student label{display:block;font-weight:600}.student ol{padding:0;margin:0;list-style:none}.student li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--line)}.student .rank-num{width:2rem;color:var(--muted);font-size:.86rem;font-variant-numeric:tabular-nums}.student .rank-name{font-weight:600}.student .move button{min-width:44px}.full{grid-column:1/-1}.manage summary{cursor:pointer;font-weight:600}.manage .hint{margin:8px 0}.manage label{display:inline-flex;align-items:center;gap:8px}.manage input[type=number]{width:9.5ch}.spacer{margin-top:18px}.empty{background:#efefe8;border-radius:6px;padding:10px 12px}.project-legend{display:grid;grid-template-columns:1fr auto auto;gap:12px}.warn{color:var(--danger)}.break{overflow-wrap:anywhere}@media(max-width:760px){.shell{width:calc(100% - 26px)}.grid{grid-template-columns:1fr}.intro{align-items:start;flex-direction:column;margin-top:24px}.stats{grid-template-columns:1fr 1fr}.metric:nth-child(3){border-left:0}.metric:nth-child(n+3){border-top:1px solid var(--line)}.panel{padding:15px}}@media(max-width:380px){.mast-inner{flex-wrap:wrap;padding-block:8px}nav{width:100%}nav button{flex:1}}
 </style><style>.feedback:empty{display:none}.feedback:not(:empty),#demo-banner,.intro-note{margin-bottom:14px}#invite,#signin{margin-bottom:18px}.qr-layout{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:20px}.qr-layout img{background:#fff;border:1px solid var(--line);border-radius:8px;max-width:100%;height:auto}.codes{display:grid;grid-template-columns:repeat(auto-fit,minmax(8em,1fr));gap:5px;padding:0;list-style:none}.codes li{padding:5px 8px;background:var(--soft);border-radius:5px}.codes code{font-weight:600}.codes small{display:block}.section-title{margin:20px 0 6px}.totals{display:flex;flex-wrap:wrap;gap:8px 21px;padding:10px 14px;border:1px solid var(--line);border-radius:8px;background:var(--paper)}.single-column{display:grid;gap:9px}.allocation{padding:0}.allocation summary{cursor:pointer;padding:12px 16px;list-style:none;display:grid;grid-template-columns:minmax(7.2em,.65fr) minmax(0,2.8fr) auto;gap:10px;align-items:center}.allocation summary::-webkit-details-marker{display:none}.allocation summary::after{content:'+';font-size:1.33rem;color:var(--accent);line-height:1}.allocation[open] summary::after{content:'−'}.allocation[open] summary{border-bottom:1px solid var(--line)}.allocation .body{padding:16px}.allocation .summary-name{font-weight:700}.summary-chips{display:flex;flex-wrap:wrap;gap:4px}.summary-chips .tag{white-space:normal;overflow-wrap:anywhere}.summary-chips .suggested{background:#edefe7;color:var(--muted)}.priority-groups{display:grid;gap:4px;margin:0}.priority-groups div{display:grid;grid-template-columns:12ch minmax(0,1fr);gap:10px;padding:4px 0;border-bottom:1px solid var(--line)}.priority-groups dd{margin:0;overflow-wrap:anywhere}.form-head{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form-head input{width:100%}.form-head label{margin-bottom:4px}.student input{min-height:44px}.summary-project{display:grid;line-height:1.25;gap:3px}.summary-project small{font-weight:400}.sub-section{border-top:1px solid var(--line);padding-top:10px}.allocation .picker label{flex:1}.allocation .picker select{width:100%}@media(max-width:540px){.qr-layout,.form-head{grid-template-columns:1fr}.allocation summary{grid-template-columns:minmax(0,1fr) auto}.summary-chips{grid-row:2;grid-column:1/-1}.allocation summary::after{grid-row:1;grid-column:2}.allocation .body{padding:12px}}
  .page-tabs a{padding:.45rem .65rem;color:var(--muted);border-radius:6px;font-size:.88rem;font-weight:650;text-decoration:none}.page-tabs [aria-current]{background:var(--paper);color:var(--accent)}#session-controls{margin-bottom:12px}#login label{display:block;font-weight:600}.drag-area{cursor:grab;user-select:none;flex:1;gap:7px}.drag-grip{display:grid;place-items:center;flex:0 0 38px;height:42px;touch-action:none;color:var(--accent);font-size:1.35rem}.student .drag-area .rank-num{width:1.5rem;flex-shrink:0}.student li.dragging{background:var(--soft);opacity:.62}.student li.drop-before{box-shadow:inset 0 3px var(--accent)}.student li.drop-after{box-shadow:inset 0 -3px var(--accent)}.sr-only{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden;white-space:nowrap}@media(max-width:360px){.student .move{gap:4px}.student .move button{padding-inline:.45rem}.drag-grip{flex-basis:31px}}
+.edit-panel{margin-bottom:14px}.edit-panel summary{cursor:pointer;font-weight:650}.edit-panel form{margin-top:14px}.edit-code{font-family:monospace;overflow-wrap:anywhere;letter-spacing:.05em}.challenge-size{font-size:.86em;color:var(--muted);font-weight:400}.student .rank-name{min-width:0;overflow-wrap:anywhere}.student .move{flex-shrink:0}.student #password-field input{width:min(100%,25rem)}.allocation .summary-project{min-width:0;overflow-wrap:anywhere}.allocation .picker label{min-width:0}.allocation .picker select{min-width:0}.allocation .priority-groups div{grid-template-columns:minmax(0,12ch) minmax(0,1fr)}
+@media(max-width:480px){.student #preference-list li{gap:4px}.student .move{gap:2px}.student .move button{min-width:44px;min-height:44px;padding:.25rem}.student .drag-area{gap:4px}.student .drag-area .rank-num{width:1.35rem}.student .drag-grip{flex-basis:38px;height:44px}.allocation .picker label{flex-basis:100%}.allocation .priority-groups div{grid-template-columns:9ch minmax(0,1fr)}}
+@media(max-width:345px){.student .drag-grip{flex-basis:37px}.student .rank-name{font-size:.89rem}.page-tabs a{padding-inline:.4rem}}
+.final-dialog{width:min(650px,calc(100% - 24px));max-height:85vh;overflow:auto}.final-dialog::backdrop{background:#1f2c2580}.final-list{margin:16px 0}.final-list section{border-top:1px solid var(--line);padding-top:10px}.final-list h4{margin:5px 0}.final-list ul{margin:0;padding-inline-start:24px}
+@media print{body>*{display:none!important}body>main{display:block!important;width:100%!important}main>*{display:none!important}main>dialog[open]{display:block!important;position:static;width:100%;max-height:none;overflow:visible;border:0}main>dialog form,main>dialog .toolbar{display:none!important}main>dialog section{break-inside:avoid}}
 </style></head><body>
 <header class="mast"><div class="shell mast-inner"><div class="brand"><span class="mark" aria-hidden="true">P</span><div><strong>Projektvergabe</strong><small id="mode-label">Seminarverwaltung</small></div></div><nav aria-label="Ansicht" id="live-tabs" class="page-tabs"><a href="/abgabe">Studierende</a><a href="/prof" aria-current="page">Professor</a></nav></div></header>
-<main class="shell"><div class="intro row spread wrap"><div><div class="eyebrow">9 Projekte · bis zu 2 Dreiergruppen je Projekt</div><h1>Projekte zuteilen</h1><p class="muted">Wünsche prüfen, Vorschlag berechnen und Plätze festlegen.</p></div><div class="toolbar"><button id="refresh" hidden>Abgaben aktualisieren</button><button id="propose" class="primary" disabled>Vorschlag berechnen</button></div></div>
+<main class="shell"><div class="intro row spread wrap"><div><div class="eyebrow">10 Challenges · bis zu zwei Gruppen je Challenge</div><h1>Projekte zuteilen</h1><p class="muted">Wünsche prüfen, Vorschlag berechnen und Plätze festlegen.</p></div><div class="toolbar"><button id="refresh" hidden>Abgaben aktualisieren</button><button id="propose" class="primary" disabled>Vorschlag berechnen</button></div></div>
 <div id="demo-banner" class="empty" hidden><strong>Testphase:</strong> 27 fiktive Wunschzettel mit Vornamen. Änderungen wirken sich nicht auf die echte Runde aus.<button class="link" id="back-live" hidden>Zur echten Runde</button></div>
 <div id="status" class="feedback" role="status" aria-live="polite"></div>
 <section id="signin" class="panel stack" hidden><h2>Professorenzugang</h2><form id="login" class="stack"><label for="password">Passwort</label><div class="row wrap"><input id="password" type="password" autocomplete="current-password" required maxlength="200"><button class="primary" id="login-submit">Anmelden</button></div></form></section>
 <div id="session-controls" class="toolbar" hidden><button id="logout" type="button">Abmelden</button></div>
-<section id="invite" class="panel stack" hidden><h2>Wunschzettel einsammeln</h2><div class="qr-layout"><img id="qr" width="184" height="184" alt="QR-Code zur Wunschabgabe"><div class="stack"><p>Den QR-Code im Seminar zeigen: Studierende geben ihren Namen ein, sortieren die neun Projekte und schicken ihre Wünsche ab.</p><p class="break"><a id="submit-link" target="_blank" rel="noopener noreferrer"></a></p><button id="copy-link" type="button">Link kopieren</button></div></div></section>
-<div id="work" hidden><div id="totals" class="totals"></div><div class="row spread wrap section-title"><h2>Projektübersicht</h2><div class="toolbar"><button id="view-demo" hidden>Testphase öffnen</button><button id="export" disabled>Endgültige Zuteilung als CSV</button></div></div><p class="hint intro-note">Die Wunschlisten zeigen alle abgegebenen Prioritäten. Nach dem Festlegen ist eine Person für andere Projekte nicht mehr auswählbar.</p><div id="project-list" class="single-column"></div></div></main><footer class="shell footer">Projektvergabe <span>·</span> Priorität 1 ist der Erstwunsch</footer><script>(function () {
+<section id="invite" class="panel stack" hidden><h2>Wunschzettel einsammeln</h2><div class="qr-layout"><img id="qr" width="184" height="184" alt="QR-Code zur Wunschabgabe"><div class="stack"><p>Den QR-Code im Seminar zeigen: Studierende geben ihren Namen ein, sortieren alle zehn Challenges und schicken ihre Wünsche ab.</p><p class="break"><a id="submit-link" target="_blank" rel="noopener noreferrer"></a></p><button id="copy-link" type="button">Link kopieren</button></div></div></section>
+<div id="work" hidden><div id="totals" class="totals"></div><div id="warnings" class="feedback warn allocation-warnings" role="status" aria-live="polite"></div><div class="row spread wrap section-title"><h2>Projektübersicht</h2><div class="toolbar"><button id="view-demo" hidden>Testphase öffnen</button><button id="confirm-all" disabled>Alle Vorschläge bestätigen</button><button id="final-show" disabled>Endgültige Zusortierung</button></div></div><p class="hint intro-note">Die Wunschlisten zeigen alle abgegebenen Prioritäten. Nach dem Bestätigen ist eine Person nicht mehr auswählbar, bis die Zuteilung aufgehoben wird.</p><div id="project-list" class="single-column"></div></div>
+<dialog id="final-dialog" aria-labelledby="final-title" class="panel final-dialog"><div class="row spread wrap"><h2 id="final-title">Endgültige Zusortierung</h2><form method="dialog"><button id="final-close">Schließen</button></form></div><p id="final-count" class="muted"></p><div id="final-list" class="stack final-list"></div><div class="toolbar"><button id="export" type="button">CSV herunterladen</button><button id="export-pdf" type="button">PDF herunterladen</button></div></dialog></main><footer class="shell footer">Projektvergabe <span>·</span> Priorität 1 ist der Erstwunsch</footer><script>(function (factory) {
+  'use strict';
+  if (typeof module === 'object' && module.exports) module.exports = factory();
+  else window.ChallengeCatalog = factory();
+})(function () {
   'use strict';
 
-  const PROJECT_COUNT = 9;
-  const BALLOT_COUNT = 27;
-  const validId = /^(?:0[1-9]|1[0-9]|2[0-7])$/;
-  const isProject = value => Number.isInteger(value) && value >= 1 && value <= PROJECT_COUNT;
+  const challenges = Object.freeze([
+    [1, 'Wie wählt Wiesbaden?', 2, 3],
+    [2, 'Ab aufs Rad, aber sicher!', 2, 3],
+    [3, 'Wiesbaden - Stadt der kurzen Wege?', 2, 3],
+    [4, 'Open Data "Health Check"', 2, 3],
+    [5, 'Die Stadt von gestern', 3, 4],
+    [6, 'Wie elektrisch ist Wiesbaden unterwegs?', 2, 3],
+    [7, 'Zusammen verschieden', 2, 3],
+    [8, 'Flächencheck im Zeitvergleich', 2, 3],
+    [9, 'Ferien auf Knopfdruck', 2, 3],
+    [10, 'Finanzen aufgedeckt', 3, 4],
+  ].map(([id, title, min, max]) => Object.freeze({ id, title, min, max })));
+  const ids = new Set(challenges.map(({ id }) => id));
+  const MAX_BALLOTS = 27;
 
-  function validateBallot(ballot) {
-    if (!ballot || typeof ballot.id !== 'string' || !validId.test(ballot.id) ||
-        !Array.isArray(ballot.ranks) || ballot.ranks.length !== PROJECT_COUNT) return false;
-    const seen = new Set();
-    for (const project of ballot.ranks) {
-      if (!isProject(project) || seen.has(project)) return false;
-      seen.add(project);
-    }
-    return true;
+  function validateRanks(ranks) {
+    if (!Array.isArray(ranks) || ranks.length !== ids.size) return false;
+    const seen = new Set(ranks);
+    return seen.size === ids.size && [...seen].every(id => ids.has(id));
   }
 
+  return { challenges, validateRanks, MAX_BALLOTS };
+});
+</script><script>(function (factory) {
+  'use strict';
+  if (typeof module === 'object' && module.exports) module.exports = factory(require('./challenges'));
+  else window.ChallengeAllocation = factory(window.ChallengeCatalog);
+})(function (catalog) {
+  'use strict';
+
+  const { challenges, validateRanks, MAX_BALLOTS } = catalog;
   const MIN_SIZE = 2;
-  const BASE_SIZE = 3;
-  const EXPANDED_SIZE = 6;
-  const RADIX = BALLOT_COUNT + 1;
-  // One base-28 digit per rank, with the units digit reserved for extra seats.
-  // All 27 lower-priority costs combined are below one higher-priority unit.
-  const RANK_COST = Array.from({ length: PROJECT_COUNT }, (_, i) => i === 0 ? 0 : RADIX ** i);
-  const OPTIONAL_SEAT_COST = RADIX ** PROJECT_COUNT;
+  const MAX_SIZE = 4;
+  const projectIds = new Set(challenges.map(({ id }) => id));
+  const byProject = new Map(challenges.map(c => [c.id,c]));
+  const own = (obj, key) => Object.prototype.hasOwnProperty.call(obj, key);
+  const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+
+  function lockLayout({ locked = {}, groups = {}, expanded = [], sizes = {} } = {}) {
+    if (![locked, groups, sizes].every(record) || !Array.isArray(expanded) ||
+        !expanded.every(project => projectIds.has(project))) {
+      throw new Error('Ungültige Einstellungen für die Zuteilung.');
+    }
+    for (const [project, limits] of Object.entries(sizes)) {
+      const range = byProject.get(Number(project));
+      if (!projectIds.has(Number(project)) || String(Number(project)) !== project || !record(limits) ||
+          Object.entries(limits).some(([group, cap]) => !['A', 'B'].includes(group) || !Number.isInteger(cap) || cap<1 || cap>range.max)) {
+        throw new Error(`Ungültige Gruppengröße für Projekt ${project}.`);
+      }
+    }
+    const enabled = new Set(expanded);
+    const slots = [];
+    const indexes = new Map();
+    for (const { id, min, max } of challenges) {
+      for (const group of enabled.has(id) ? ['A', 'B'] : ['A']) {
+        indexes.set(`${id}${group}`, slots.length);
+        const cap = own(sizes, id) && own(sizes[id], group) ? sizes[id][group] : max;
+        slots.push({ project: id, group, min, max, cap });
+      }
+    }
+    const fixed = new Map();
+    const loads = slots.map(() => 0);
+    for (const [id, project] of Object.entries(locked)) {
+      const group = own(groups, id) ? groups[id] : 'A';
+      if (!projectIds.has(project) || !['A', 'B'].includes(group)) {
+        throw new Error(`Ungültige Festlegung für ${id}.`);
+      }
+      const index = indexes.get(`${project}${group}`);
+      if (index === undefined) throw new Error(`Gruppe ${project}${group} ist nicht freigegeben.`);
+      if (++loads[index] > slots[index].cap) throw new Error(`Gruppe ${project}${group} ist bereits voll.`);
+      fixed.set(id, index);
+    }
+    return { slots, fixed, loads };
+  }
+
+  function checkLocks(options) {
+    lockLayout(options);
+  }
+
+  function sizeCost({ group, min }, n) {
+    return n === 0 ? 0 : Number(group === 'B') + Math.max(0,min-n);
+  }
+
+  // With four places at most, these are all configurations of intact teams
+  // that can fit in one group: none, one of size 2/3/4, or two pairs.
+  const packings = [[0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1], [2, 0, 0]];
+
+  // Exact feasibility and best size penalty, independent of rankings. Tracking
+  // counts by team size, not identities, avoids enumerating assignments.
+  function completionCost(slots, loads, seats, { 2: pairs = 0, 3: triples = 0, 4: quads = 0 } = {}) {
+    const singles = seats - 2 * pairs - 3 * triples - 4 * quads;
+    if (singles < 0) return Infinity;
+    const choices = slots.map((slot, i) => {
+      const options = [];
+      for (let n = loads[i]; n <= slot.cap; n++) {
+
+        const added = n - loads[i];
+        for (const [p, t, q] of packings) {
+          const s = added - 2 * p - 3 * t - 4 * q;
+          if (s >= 0 && s <= singles && p <= pairs && t <= triples && q <= quads) {
+            options.push({ s, p, t, q, cost: sizeCost(slot, n) });
+          }
+        }
+      }
+      return options;
+    });
+    const memo = slots.map(() => new Map());
+    function visit(i, singles, pairs, triples, quads) {
+      if (i === slots.length) return singles + pairs + triples + quads === 0 ? 0 : Infinity;
+      // Each count is <= MAX_BALLOTS. Use disjoint digits for the memo key.
+      const base = MAX_BALLOTS + 1;
+      const key = ((singles * base + pairs) * base + triples) * base + quads;
+      if (memo[i].has(key)) return memo[i].get(key);
+      let best = Infinity;
+      for (const { s, p, t, q, cost } of choices[i]) {
+        if (s <= singles && p <= pairs && t <= triples && q <= quads) {
+          best = Math.min(best, cost + visit(i + 1, singles - s, pairs - p, triples - t, quads - q));
+          if (best === 0) break;
+        }
+      }
+      memo[i].set(key, best);
+      return best;
+    }
+    return visit(0, singles, pairs, triples, quads);
+  }
+
+  function namedTeams(rows) {
+    const byName = new Map();
+    for (const row of rows) {
+      const name = typeof row.team === 'string' ? row.team.trim() : '';
+      if (!name) continue;
+      const key = name.toLowerCase();
+      if (!byName.has(key)) byName.set(key, { name, members: [] });
+      byName.get(key).members.push(row);
+    }
+    return [...byName.values()].filter(({ members }) => members.length >= MIN_SIZE);
+  }
+
+  function teamWarnings(teams, placed) {
+    return teams.filter(({ members }) => {
+      const index = placed.get(members[0].id);
+      return index === undefined || members.some(({ id }) => placed.get(id) !== index);
+    }).map(({ name }) => `Team „${name}“ konnte nicht vollständig zusammen eingeteilt werden.`);
+  }
 
   function solve(options = {}) {
-    if (!options || typeof options !== 'object' || Array.isArray(options)) {
-      throw new Error('Ungültige Eingabe für die Zuteilung.');
-    }
-    const { ballots, locked = {}, expanded = [], seed = 1, exactGroups } = options;
-    if (!Number.isSafeInteger(seed)) throw new Error('Ungültige Losnummer: Eine ganze Zahl wird benötigt.');
-    if (!Array.isArray(ballots) || ballots.length !== BALLOT_COUNT) {
-      throw new Error('Es werden genau 27 Stimmzettel benötigt.');
-    }
+    const { ballots } = options;
+    if (!Array.isArray(ballots) || ballots.length > MAX_BALLOTS) throw new Error('Ungültige Anzahl Stimmzettel.');
+    const { slots, fixed, loads } = lockLayout(options);
     const ids = new Set();
-    const firstVotes = Array(PROJECT_COUNT + 1).fill(0);
-    for (const ballot of ballots) {
-      if (!validateBallot(ballot)) throw new Error('Ungültiger Stimmzettel.');
-      if (ids.has(ballot.id)) throw new Error(`Doppelte Kennung: ${ballot.id}.`);
-      ids.add(ballot.id);
-      firstVotes[ballot.ranks[0]]++;
-    }
-    if (!locked || typeof locked !== 'object' || Array.isArray(locked)) {
-      throw new Error('Ungültige Festlegungen.');
-    }
-    const fixed = new Map(Object.entries(locked));
-    for (const [id, project] of fixed) {
-      if (!ids.has(id) || !isProject(project)) throw new Error(`Ungültige Festlegung für Kennung ${id}.`);
+    const rows = Array.from(ballots, ballot => {
+      if (!ballot || (typeof ballot.id !== 'string' && !Number.isSafeInteger(ballot.id)) ||
+          ballot.id === '' || !validateRanks(ballot.ranks)) throw new Error('Ungültiger Stimmzettel.');
+      const id = String(ballot.id);
+      if (ids.has(id)) throw new Error(`Doppelte Kennung: ${id}.`);
+      ids.add(id);
+      return { ...ballot, id };
+    }).sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
+    for (const id of fixed.keys()) {
+      if (!ids.has(id)) throw new Error(`Festlegung ohne Stimmzettel für ${id}.`);
     }
 
-    if (!Array.isArray(expanded)) throw new Error('Ungültige Projektfreigaben.');
-    const approved = new Set();
-    for (const project of expanded) {
-      if (!isProject(project)) throw new Error('Ungültige Projektfreigabe.');
-      if (firstVotes[project] < EXPANDED_SIZE) {
-        throw new Error(`Projekt ${project} benötigt mindestens ${EXPANDED_SIZE} Erstwünsche für eine zweite Gruppe.`);
-      }
-      approved.add(project);
+    const warnings = [];
+    const teams = namedTeams(rows);
+    let seats = rows.length - fixed.size;
+    while (seats >= 0 && completionCost(slots, loads, seats) === Infinity) seats--;
+    if (seats < 0) {
+      warnings.push('Für die festgelegten Gruppen sind noch nicht genügend Personen verfügbar.');
+      return { assignment: {}, teamAssignments: {}, warnings: warnings.concat(teamWarnings(teams, new Map())) };
     }
-    const slots = [];
-    for (let project = 1; project <= PROJECT_COUNT; project++) {
-      const capacity = exactGroups ? BASE_SIZE * exactGroups[project - 1] : approved.has(project) ? EXPANDED_SIZE : BASE_SIZE;
-      for (let seat = 0; seat < capacity; seat++) {
-        const cost = (seat < MIN_SIZE ? 0 : OPTIONAL_SEAT_COST) + (seat < BASE_SIZE ? 0 : 1);
-        slots.push({ project, seat, cost });
-      }
-    }
-    const rows = ballots.slice().sort((a, b) => Number(a.id) - Number(b.id));
-    // Only traversal order changes; all optimization costs remain exact.
-    const random = seededRandom(seed);
-    shuffle(rows, random);
-    shuffle(slots, random);
-    const costs = rows.map(({ id, ranks }) => {
-      const rankCosts = [];
-      ranks.forEach((project, i) => { rankCosts[project] = RANK_COST[i]; });
-      return slots.map(({ project, cost }) => fixed.has(id) && fixed.get(id) !== project
-        ? Infinity : rankCosts[project] + cost);
-    });
-    const matching = minimumMatching(costs);
-    // With a fixed number of students, minimizing optional seats fills the
-    // mandatory seats first. A deficit in the optimum is therefore infeasible.
-    if (!exactGroups && matching.filter(index => slots[index].seat < MIN_SIZE).length !== PROJECT_COUNT * MIN_SIZE) {
-      throw new Error(`Keine zulässige Zuteilung möglich: Jedes Projekt benötigt mindestens ${MIN_SIZE} Personen.`);
-    }
-    const assignment = {};
-    const histogram = Array(PROJECT_COUNT).fill(0); // index 0 counts first choices
-    rows.forEach(({ id, ranks }, i) => {
-      const { project } = slots[matching[i]];
-      assignment[id] = project;
-      histogram[ranks.indexOf(project)]++;
-    });
-    return { assignment, histogram };
-  }
 
-  function groupBounds(locked = {}, groups = {}, expanded = []) {
-    const a = Array(PROJECT_COUNT).fill(0), b = a.slice();
-    for (const [id, project] of Object.entries(locked)) {
-      if (!isProject(project)) throw new Error('Ungültiges Projekt.');
-      const g = groups[id] ?? 'A';
-      if (g !== 'A' && g !== 'B') throw new Error('Ungültige Gruppe.');
-      (g === 'B' ? b : a)[project - 1]++;
+    // Keep maximum headcount and admin locks first. Accept team constraints in
+    // stable ballot-ID order, but only if the whole accepted set still fits.
+    // If teams compete for scarce slots this is not a global cohesion optimum.
+    const placed = new Map(fixed);
+    const bundles = [];
+    const bundled = new Set();
+    const counts = { 2: 0, 3: 0, 4: 0 };
+    function place(members, index) {
+      loads[index] += members.length;
+      seats -= members.length;
+      for (const { id } of members) placed.set(id, index);
     }
-    const bounds = a.map((n,i) => [b[i] ? 2 : n ? 1 : 0, expanded.includes(i + 1) ? 2 : 1]);
-    if (bounds.some(([lo,hi],i) => lo > hi || a[i] > BASE_SIZE || b[i] > BASE_SIZE)) {
-      throw new Error('Diese Gruppe ist nicht freigegeben oder hat bereits drei Personen.');
-    }
-    if (bounds.reduce((sum,[lo])=>sum+lo,0) > BALLOT_COUNT / BASE_SIZE) {
-      throw new Error('Diese Festlegung würde mehr als neun volle Dreiergruppen erfordern.');
-    }
-    return bounds;
-  }
-
-  function solveGrouped({ ballots, locked = {}, groups = {}, expanded = [], seed = 1 }) {
-    const bounds = groupBounds(locked, groups, expanded);
-    const profile = Array(PROJECT_COUNT).fill(0);
-    let best, bestDoubles;
-    function visit(i, left, doubles) {
-      if (i === PROJECT_COUNT) {
-        if (left !== 0) return;
-        const next = solve({ ballots, locked, seed, exactGroups:profile });
-        let k=PROJECT_COUNT-1;
-        if(best)while(k>=0&&next.histogram[k]===best.histogram[k])k--;
-        if(!best||(k<0?doubles<bestDoubles:next.histogram[k]<best.histogram[k])){
-          best=next;bestDoubles=doubles;
+    for (const { members } of teams) {
+      const size = members.length;
+      if (size > MAX_SIZE) continue;
+      const anchors = new Set(members.filter(({ id }) => fixed.has(id)).map(({ id }) => fixed.get(id)));
+      if (anchors.size > 1) continue;
+      if (anchors.size === 1) {
+        const [index] = anchors;
+        const rest = members.filter(({ id }) => !fixed.has(id));
+        if (loads[index] + rest.length > slots[index].cap) continue;
+        loads[index] += rest.length;
+        const feasible = completionCost(slots, loads, seats - rest.length, counts) !== Infinity;
+        loads[index] -= rest.length;
+        if (feasible) place(rest, index);
+      } else {
+        counts[size]++;
+        if (completionCost(slots, loads, seats, counts) === Infinity) {
+          counts[size]--;
+        } else {
+          bundles.push(members);
+          for (const { id } of members) bundled.add(id);
         }
-        return;
-      }
-      const [min,max]=bounds[i], remaining=bounds.slice(i+1);
-      const minimum=remaining.reduce((s,[lo])=>s+lo,0), maximum=remaining.reduce((s,[,hi])=>s+hi,0);
-      for(let n=Math.max(min,left-maximum);n<=Math.min(max,left-minimum);n++){
-        profile[i]=n;visit(i+1,left-n,doubles+(n===2?1:0));
       }
     }
-    visit(0,BALLOT_COUNT/BASE_SIZE,0);
-    return best;
-  }
 
-  function seededRandom(seed) {
-    // Mulberry32, with an explicit unsigned 32-bit state.
-    let state = seed >>> 0;
-    return function () {
-      state = (state + 0x6d2b79f5) >>> 0;
-      let n = Math.imul(state ^ (state >>> 15), state | 1);
-      n ^= n + Math.imul(n ^ (n >>> 7), n | 61);
-      return ((n ^ (n >>> 14)) >>> 0) / 0x100000000;
+    // Place intact teams before singles. Each step trades this unit's rank
+    // cost against the best attainable size penalty, without sacrificing
+    // feasibility. This is deterministic, not a global rank/fairness optimum.
+    const units = bundles.concat(rows.filter(({ id }) => !placed.has(id) && !bundled.has(id)).map(row => [row]));
+    for (const members of units) {
+      const size = members.length;
+      if (seats < size) break;
+      if (size > 1) counts[size]--;
+      let index = -1;
+      let best = Infinity;
+      slots.forEach((slot, i) => {
+        if (loads[i] + size > slot.cap) return;
+        const rankCost = members.reduce((sum, row) => sum + row.ranks.indexOf(slot.project), 0);
+        if (rankCost >= best) return;
+        loads[i] += size;
+        const score = rankCost + completionCost(slots, loads, seats - size, counts);
+        loads[i] -= size;
+        if (score < best) { index = i; best = score; }
+      });
+      if (index >= 0) place(members, index);
+    }
+    if (placed.size < rows.length) {
+      warnings.push(`${rows.length - placed.size} Person(en) ohne Zuteilung: Gruppengrößen lassen keine vollständige Zuteilung zu.`);
+    }
+    warnings.push(...teamWarnings(teams, placed));
+    return {
+      assignment: Object.fromEntries([...placed].map(([id, i]) => [id, slots[i].project])),
+      teamAssignments: Object.fromEntries([...placed].map(([id, i]) => [id, slots[i].group])),
+      warnings,
     };
   }
 
-  function shuffle(items, random) {
-    for (let i = items.length - 1; i > 0; i--) {
-      const j = Math.floor(random() * (i + 1));
-      [items[i], items[j]] = [items[j], items[i]];
-    }
+  function pending(state) {
+    return Object.entries(state.proposal??{}).filter(([id])=>!own(state.locked,id))
+      .map(([id,project])=>({id,project,group:state.proposalGroups[id]}));
   }
 
-  // Rectangular Hungarian algorithm. Forbidden edges have infinite cost.
-  function minimumMatching(costs) {
-    const rowCount = costs.length;
-    const columnCount = costs[0].length;
-    const u = Array(rowCount + 1).fill(0);
-    const v = Array(columnCount + 1).fill(0);
-    const owner = Array(columnCount + 1).fill(0);
-    const previous = Array(columnCount + 1).fill(0);
-
-    for (let row = 1; row <= rowCount; row++) {
-      owner[0] = row;
-      let column = 0;
-      const distance = Array(columnCount + 1).fill(Infinity);
-      const seen = Array(columnCount + 1).fill(false);
-      do {
-        seen[column] = true;
-        const activeRow = owner[column];
-        let delta = Infinity;
-        let next = 0;
-        for (let j = 1; j <= columnCount; j++) {
-          if (seen[j]) continue;
-          const reduced = costs[activeRow - 1][j - 1] - u[activeRow] - v[j];
-          if (reduced < distance[j]) {
-            distance[j] = reduced;
-            previous[j] = column;
-          }
-          if (distance[j] < delta) {
-            delta = distance[j];
-            next = j;
-          }
-        }
-        if (delta === Infinity) throw new Error('Keine zulässige Zuteilung möglich: Projektkapazitäten überschritten.');
-        for (let j = 0; j <= columnCount; j++) {
-          if (seen[j]) {
-            u[owner[j]] += delta;
-            v[j] -= delta;
-          } else {
-            distance[j] -= delta;
-          }
-        }
-        column = next;
-      } while (owner[column] !== 0);
-
-      do {
-        const next = previous[column];
-        owner[column] = owner[next];
-        column = next;
-      } while (column !== 0);
-    }
-
-    const matching = Array(rowCount);
-    for (let j = 1; j <= columnCount; j++) {
-      if (owner[j]) matching[owner[j] - 1] = j - 1;
-    }
-    return matching;
+  function confirmAll(state, entries) {
+    const expected=pending(state);
+    const wanted=new Map(expected.map(e=>[e.id,e]));
+    if(!Array.isArray(entries)||!entries.length||entries.length!==expected.length||entries.some(e=>{
+      if(!e||typeof e.id!=='string')return true;
+      const match=wanted.get(e.id);wanted.delete(e.id);
+      return !match||e.project!==match.project||e.group!==match.group;
+    }))throw Error('Der Vorschlag hat sich geändert. Bitte Abgaben aktualisieren und erneut prüfen.');
+    const locked={...state.locked},groups={...state.groups};
+    for(const {id,project,group} of expected){locked[id]=project;groups[id]=group;}
+    checkLocks({...state,locked,groups});
+    return {locked,groups};
   }
 
-  const api = { solve, validateBallot, solveGrouped, groupBounds };
-  if (typeof module === 'object' && module.exports) module.exports = api;
-  if (typeof window !== 'undefined') window.ProjectSolver = api;
-}());
+  return { solve, checkLocks, pending, confirmAll };
+});
 </script><script>(() => {
 'use strict';
-const projects=[1,2,3,4,5,6,7,8,9];
+const node=typeof module==='object'&&module.exports;
+const {challenges}=node?require('./challenges'):window.ChallengeCatalog;
+const projects=challenges.map(c=>c.id);
 const names=['Lea','Mika','Aylin','Jonas','Emma','Noah','Sofia','Elias','Mila','Lukas','Amira','Felix','Clara','Finn','Nora','Samir','Lina','Paul','Leni','Oskar','Mara','Yusuf','Hannah','Nico','Jana','Tobias','Alina'];
-const first=[1,2,3,4,5,6,7,8,9,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,1];
+const first=[1,2,3,4,5,6,7,8,9,10,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,1];
 const score=(p,i)=>(p*13+i*7+p*i*5)%29+(p>5?13:0);
-function demoRound(){return {ballots:names.map((name,i)=>({name,id:String(i+1).padStart(2,'0'),ranks:[first[i],...projects.filter(p=>p!==first[i]).sort((a,b)=>score(a,i)-score(b,i))]})),codes:[],locked:{},proposal:null,submitUrl:''};}
+function demoRound(){return {
+ ballots:names.map((name,i)=>({name,id:String(i+1).padStart(2,'0'),...(i<2?{team:'Team Main'}:{}),
+  ranks:[first[i],...projects.filter(p=>p!==first[i]).sort((a,b)=>score(a,i)-score(b,i))]})),
+ codes:[],locked:{},groups:{},expanded:[],sizes:{},proposal:null,proposalGroups:{},warnings:[],submitUrl:''
+};}
 function projectRows(state){
  const groups=new Map(), labels=new Map();
  for(const b of [...state.ballots].sort((a,b)=>a.id.localeCompare(b.id))){const k=b.name.toLocaleLowerCase('de');const group=groups.get(k)||[];group.push(b);groups.set(k,group);}
  for(const group of groups.values())group.forEach((b,i)=>labels.set(b.id,group.length>1?`${b.name} (${String.fromCharCode(65+i)})`:b.name));
- return projects.map(p=>{
+ return challenges.map(({id:p,title,min,max})=>{
   const interest=state.ballots.map(b=>({...b,label:labels.get(b.id),rank:b.ranks.indexOf(p)+1,available:!Object.hasOwn(state.locked,b.id)})).sort((a,b)=>a.rank-b.rank||a.label.localeCompare(b.label,'de')||a.id.localeCompare(b.id));
   const locked=interest.filter(b=>state.locked[b.id]===p).map(b=>({...b,group:state.groups?.[b.id]??'A'}));
-  const remainingA=3-locked.filter(b=>b.group==='A').length;
-  const proposed=interest.filter(b=>b.available&&state.proposal?.[b.id]===p).map((b,i)=>({...b,group:i<remainingA?'A':'B'}));
-  return {p,interest,locked,proposed,expanded:state.expanded?.includes(p)??false};
+  const proposed=interest.filter(b=>b.available&&state.proposal?.[b.id]===p).map(b=>({...b,group:state.proposalGroups?.[b.id]??'A'}));
+  return {p,title,min,max,interest,locked,proposed,sizes:state.sizes?.[p]??{},expanded:state.expanded?.includes(p)??false};
  });
 }
 const api={demoRound,projectRows,projects};
-if(typeof module==='object'&&module.exports)module.exports=api;else window.SeminarViews=api;
+if(node)module.exports=api;else window.SeminarViews=api;
 })();
 </script><script>(() => {
 'use strict';
 const {demoRound,projectRows,projects}=window.SeminarViews;
+const {MAX_BALLOTS}=window.ChallengeCatalog;
 const byId=id=>document.getElementById(id);
 const local=location.protocol==='file:';
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -268,42 +328,57 @@ async function request(path,body){
  const data=await res.json();if(!res.ok)throw Object.assign(Error(data.error||'Die Anfrage konnte nicht ausgeführt werden.'),{status:res.status});return data;
 }
 function updateButtons(){
- byId('propose').disabled=busy||state?.ballots.length!==27||Object.keys(state?.locked||{}).length===27;
+ byId('propose').disabled=busy||!(state?.ballots.length);
  for(const id of ['refresh','view-demo','back-live','login-submit','logout'])byId(id).disabled=busy;
- byId('export').disabled=busy||Object.keys(state?.locked||{}).length!==27;
+ byId('confirm-all').disabled=busy||!state?.proposal||Object.keys(state.proposal).every(id=>Object.hasOwn(state.locked,id));
+ byId('final-show').disabled=busy||!Object.keys(state?.locked||{}).length;
  list.querySelectorAll('[data-set],[data-unset],[data-manual]').forEach(b=>b.disabled=busy||(b.hasAttribute('data-manual')&&!b.closest('form').elements.person.value));
  list.querySelectorAll('[data-expand]').forEach(b=>b.disabled=busy||b.dataset.blocked==='true');
+ list.querySelectorAll('[data-size],select[name="person"]').forEach(b=>b.disabled=busy);
 }
 function activateDemo(){state=demoRound();demo=true;notice();render();byId('propose').focus();}
 function rank(x){return `${x.rank}. Priorität`;}
-function entry(x,button){return `<li><span>${esc(x.label)} <span class="tag">${rank(x)}</span></span>${button}</li>`;}
+const person=x=>`${esc(x.label)}${x.team?` · ${esc(x.team)}`:''}`;
+const capacity=(r,g)=>r.sizes[g]??r.max;
+
+function entry(x,confirm){
+ const action=confirm?'Confirm':'Undo';
+ return `<li><span class="member-name break">${person(x)} <span class="tag">${rank(x)}</span></span><button type="button"${confirm?'':' class="link"'} data-${confirm?'set':'unset'}="${esc(x.id)}" aria-label="${action}: ${esc(x.label)}">${action}</button></li>`;
+}
 function render(){
  const previousOpen=new Set([...list.querySelectorAll('details[open]')].map(el=>el.id));
  show('signin',!state&&!busy);show('work',!!state);show('demo-banner',demo);show('back-live',demo&&!local);
  show('session-controls',!local&&!!state);show('live-tabs',!local);
  show('view-demo',!demo&&!!state);show('refresh',!demo&&!!state);show('invite',!demo&&!!state);
  byId('mode-label').textContent=demo?'Testphase':'Professorenansicht';
- if(!state){list.replaceChildren();byId('totals').replaceChildren();updateButtons();return;}
+ if(!state){list.replaceChildren();byId('totals').replaceChildren();byId('warnings').replaceChildren();updateButtons();return;}
  if(!demo){
   const link=byId('submit-link');link.href=state.submitUrl;link.textContent=state.submitUrl;
 
  }
  const fixed=Object.keys(state.locked).length;
- byId('totals').innerHTML=`<span><strong>${state.ballots.length} / 27</strong> abgegeben</span><span><strong>${fixed} / 27</strong> festgelegt</span><span>${state.proposal&&fixed<27?'Vorschlag verfügbar':fixed===27?'Alle Plätze festgelegt':'9 Gruppen mit je 3 Personen'}</span>`;
+ byId('totals').innerHTML=`<span><strong>${state.ballots.length} / ${MAX_BALLOTS}</strong> abgegeben</span><span><strong>${fixed} / ${state.ballots.length}</strong> bestätigt</span><span>${state.ballots.length&&fixed===state.ballots.length?'Alle Abgaben zugeteilt':state.proposal?'Vorschlag berechnet':'Noch kein Vorschlag'}</span>`;
+ const warnings=state.warnings??[];
+ byId('warnings').innerHTML=warnings.length?`<ul>${warnings.map(w=>`<li class="break">${esc(w)}</li>`).join('')}</ul>`:'';
  list.innerHTML=projectRows(state).map(r=>{
   const available=r.interest.filter(x=>x.available), first=r.interest.filter(x=>x.rank===1).length;
-  const cap=r.expanded?6:3, hasB=r.locked.some(x=>x.group==='B');
-  const chips=[...r.locked.map(x=>`<span class="tag">${esc(x.label)} · ${rank(x)} · fest</span>`),...r.proposed.map(x=>`<span class="tag suggested">${esc(x.label)} · ${rank(x)} · Vorschlag</span>`)].join('');
-  const sections=(r.expanded?['A','B']:['A']).map(g=>{
+  const groups=r.expanded?['A','B']:['A'];
+  const cap=groups.reduce((sum,g)=>sum+capacity(r,g),0), hasB=r.locked.some(x=>x.group==='B');
+  const chip=(x,suggested)=>`<span class="tag${suggested?' suggested':''}">${person(x)} · ${rank(x)} · Gruppe ${x.group} · ${suggested?'Vorschlag':'fest'}</span>`;
+  const chips=[...r.locked.map(x=>chip(x,false)),...r.proposed.map(x=>chip(x,true))].join('');
+  const sections=groups.map(g=>{
    const locked=r.locked.filter(x=>x.group===g), proposed=r.proposed.filter(x=>x.group===g);
-   return `<section class="sub-section stack" data-group="${g}"><h3>Gruppe ${g} · ${locked.length}/3 fest</h3>
-   ${locked.length?`<ul class="members">${locked.map(x=>entry(x,`<button type="button" class="link" data-unset="${x.id}">Freigeben</button>`)).join('')}</ul>`:''}
-   ${proposed.length?`<p class="hint">Vorschlag</p><ul class="members">${proposed.map(x=>entry(x,`<button type="button" data-set="${x.id}">Festlegen</button>`)).join('')}</ul>`:`<p class="hint">${locked.length===3?'Vollständig besetzt.':state.ballots.length<27?'Vorschlag verfügbar nach 27 Abgaben.':state.proposal?'Keine weiteren Personen für diese Gruppe vorgeschlagen.':'Noch kein Vorschlag berechnet.'}</p>`}
-   ${locked.length<3&&available.length?`<form class="row picker wrap"><label><span class="hint">Manuell festlegen</span><select name="person" aria-label="Noch nicht festgelegte Personen für Projekt ${r.p}, Gruppe ${g}"><option value="">Name auswählen …</option>${available.map(x=>`<option value="${x.id}">${esc(x.label)} · ${rank(x)}</option>`).join('')}</select></label><button type="submit" data-manual disabled>Festlegen</button></form>`:''}</section>`;
+   const limit=capacity(r,g), id=`gruppe-${r.p}-${g}`;
+   return `<section class="sub-section stack allocation-group" data-group="${g}" aria-labelledby="${id}">
+   <div class="row spread wrap group-header"><h3 id="${id}">Gruppe ${g} · ${locked.length}/${limit} fest</h3>
+   <label class="group-capacity row wrap">Maximale Größe <select id="size-${r.p}-${g}" data-size aria-label="Maximale Größe für ${esc(r.title)}, Gruppe ${g}"><option value="">Automatisch (max. ${r.max})</option>${Array.from({length:r.max},(_,i)=>i+1).map(n=>`<option value="${n}"${r.sizes[g]===n?' selected':''}>${n}</option>`).join('')}</select></label></div>
+   ${locked.length?`<ul class="members">${locked.map(x=>entry(x,false)).join('')}</ul>`:''}
+   ${proposed.length?`<p class="hint">Vorschlag</p><ul class="members">${proposed.map(x=>entry(x,true)).join('')}</ul>`:`<p class="hint">${locked.length>=limit?'Kapazität erreicht.':state.proposal?'Keine weiteren Personen für diese Gruppe vorgeschlagen.':'Noch kein Vorschlag berechnet.'}</p>`}
+   ${locked.length<limit&&available.length?`<form class="row picker wrap"><label><span class="hint">Manuell zuteilen</span><select name="person" aria-label="Noch nicht bestätigte Personen für ${esc(r.title)}, Gruppe ${g}"><option value="">Name auswählen …</option>${available.map(x=>`<option value="${esc(x.id)}">${person(x)} · ${rank(x)}</option>`).join('')}</select></label><button type="submit" data-manual disabled>Confirm</button></form>`:''}</section>`;
   }).join('');
-  const body=`<div class="body stack"><div><label class="extra"><input type="checkbox" data-expand="${r.p}" data-blocked="${hasB}" ${r.expanded?'checked':''}> Zweite Gruppe freigeben (3 zusätzliche Plätze)</label><p class="hint">${hasB?'Zum Deaktivieren zuerst die Festlegungen in Gruppe B freigeben.':'Bei 27 Studierenden gibt es insgesamt neun Dreiergruppen. Jede besetzte zweite Gruppe lässt ein anderes Projekt frei.'}</p></div>${sections}
-  <div class="sub-section"><h3>Wunschliste nach Priorität</h3><p class="hint">Historische Abgaben bleiben zur Auswertung sichtbar; festgelegte Personen sind nicht mehr auswählbar.</p><dl class="priority-groups">${projects.map(rank=>`<div><dt>Priorität ${rank}</dt><dd>${r.interest.filter(x=>x.rank===rank).map(x=>`${esc(x.label)}${x.available?'':state.locked[x.id]===r.p?' (hier fest)':' (anderswo fest)'}`).join(', ')||'–'}</dd></div>`).join('')}</dl></div></div>`;
-  return `<details class="panel allocation" data-project="${r.p}" id="projekt-${r.p}" ${previousOpen.has(`projekt-${r.p}`)?'open':''}><summary><span class="summary-project"><span class="summary-name">Projekt ${r.p}</span><small class="muted">${first} Erstwünsche · ${r.locked.length}/${cap} fest${state.proposal&&!r.locked.length&&!r.proposed.length?' · bleibt frei':''}</small></span><span class="summary-chips">${chips||'<span class="hint">Wunschliste öffnen</span>'}</span></summary>${body}</details>`;
+  const body=`<div class="body stack"><div><label class="extra"><input type="checkbox" id="expand-${r.p}" data-expand="${r.p}" data-blocked="${hasB}" ${r.expanded?'checked':''}> Gruppe B freigeben</label>${hasB?'<p class="hint">Zum Deaktivieren zuerst die Zuteilungen in Gruppe B aufheben.</p>':''}</div>${sections}
+  <div class="sub-section"><h3>Wunschliste nach Priorität</h3><p class="hint">Bestätigte Personen bleiben in der Wunschliste sichtbar.</p><dl class="priority-groups">${projects.map(rank=>`<div><dt>Priorität ${rank}</dt><dd>${r.interest.filter(x=>x.rank===rank).map(x=>`${person(x)}${x.available?'':state.locked[x.id]===r.p?' (hier fest)':' (anderswo fest)'}`).join(', ')||'–'}</dd></div>`).join('')}</dl></div></div>`;
+  return `<details class="panel allocation" data-project="${r.p}" id="projekt-${r.p}" ${previousOpen.has(`projekt-${r.p}`)?'open':''}><summary><span class="summary-project"><span class="summary-name">${esc(r.title)} <i class="challenge-size">(max. ${r.max} Personen je Gruppe)</i></span><small class="muted">${first} Erstwünsche · ${r.locked.length}/${cap} fest</small></span><span class="summary-chips">${chips||'<span class="hint">Wunschliste öffnen</span>'}</span></summary>${body}</details>`;
  }).join('');
  updateButtons();
 }
@@ -320,36 +395,64 @@ async function loadLive(password){
  }catch(e){if(e.status===401)clearSession();notice(e.status===401&&!signingIn&&!hadState?'':e.message,true);}
  finally{busy=false;render();}
 }
-async function run(path,body,p){
+function updateDemo(path,body){
+ const {project,group,id,size,enabled}=body;
+ const next={...state,locked:{...state.locked},groups:{...state.groups}};
+ if(path==='/api/lock'){
+  if(project===null){delete next.locked[id];delete next.groups[id];}
+  else if(!Object.hasOwn(next.locked,id)){next.locked[id]=project;next.groups[id]=group;}
+  else throw Error('Die bestehende Zuteilung muss zuerst aufgehoben werden.');
+ }
+ if(path==='/api/groups')next.expanded=[...state.expanded.filter(x=>x!==project),...(enabled?[project]:[])];
+ if(path==='/api/size'){
+  const limits={...state.sizes[project]};
+  if(size===null)delete limits[group];else limits[group]=size;
+  next.sizes={...state.sizes,[project]:limits};
+ }
+ const {checkLocks,solve,confirmAll}=window.ChallengeAllocation;
+ if(path==='/api/confirm-all')Object.assign(next,confirmAll(state,body.entries));
+ checkLocks(next);
+ if(path==='/api/propose'||next.proposal){
+  const {assignment,teamAssignments,warnings}=solve(next);
+  Object.assign(next,{proposal:assignment,proposalGroups:teamAssignments,warnings});
+ }
+ return next;
+}
+async function run(path,body,p,focusId){
  if(busy||!state)return;busy=true;updateButtons();
  try{
-  if(demo){
-   const next={...state,locked:{...state.locked},groups:{...state.groups},expanded:[...(state.expanded??[])]};
-   if(path==='/api/lock'){
-    if(body.project===null){delete next.locked[body.id];delete next.groups[body.id];}
-    else if(!Object.hasOwn(next.locked,body.id)){next.locked[body.id]=p;next.groups[body.id]=body.group;}
-    else throw Error('Dieser Platz ist nicht verfügbar.');
-   }
-   if(path==='/api/groups')next.expanded=[...next.expanded.filter(x=>x!==p),...(body.enabled?[p]:[])];
-   window.ProjectSolver.groupBounds(next.locked,next.groups,next.expanded);
-   if(path==='/api/propose'||next.proposal)next.proposal=window.ProjectSolver.solveGrouped({...next,seed:54}).assignment;
-   state=next;
-  }else state=await request(path,body);
-  notice(path==='/api/propose'?'Vorschlag berechnet: je drei Personen pro Gruppe.':path==='/api/groups'?(body.enabled?'Zweite Gruppe freigegeben.':'Zweite Gruppe deaktiviert.'):body.project===null?'Festlegung aufgehoben.':'Platz festgelegt.');
+  state=demo?updateDemo(path,body):await request(path,body);
+  notice(path==='/api/propose'?'Vorschlag berechnet.':path==='/api/groups'?(body.enabled?'Gruppe B freigegeben.':'Gruppe B deaktiviert.'):
+   path==='/api/size'?'Maximale Gruppengröße aktualisiert.':path==='/api/confirm-all'?`${body.entries.length} Zusortierung(en) bestätigt.`:body.project===null?'Zuteilung aufgehoben.':'Zuteilung bestätigt.');
  }catch(e){if(e.status===401)clearSession();notice(e.message,true);}
- finally{busy=false;render();if(p)byId(`projekt-${p}`)?.querySelector('summary').focus();}
+ finally{busy=false;render();if(p)((focusId&&byId(focusId))||byId(`projekt-${p}`)?.querySelector('summary'))?.focus();}
 }
 function csv(){
- const text=['Projekt;Gruppe;Name;Priorität',...projectRows(state).flatMap(r=>r.locked.map(x=>`${r.p};${x.group};"${x.label.replace(/^[=+\-@\t\r\n]/,"'$&").replaceAll('"','""')}";${x.rank}`))].join('\r\n');
+ const field=value=>`"${String(value??'').replace(/^\s*[=+\-@\t\r\n]/,"'$&").replaceAll('"','""')}"`;
+ const text=['Nr.;Challenge;Gruppe;Name;Teamname;Priorität',...projectRows(state).flatMap(r=>r.locked.map(x=>`${r.p};${field(r.title)};${x.group};${field(x.label)};${field(x.team)};${x.rank}`))].join('\r\n');
  const url=URL.createObjectURL(new Blob(['\ufeff',text],{type:'text/csv;charset=UTF-8'}));
  const anchor=document.createElement('a');anchor.href=url;anchor.download=demo?'projektvergabe-testphase.csv':'projektvergabe.csv';anchor.click();setTimeout(()=>URL.revokeObjectURL(url),15000);
+}
+function showFinal(){
+ const rows=projectRows(state).filter(r=>r.locked.length);
+ byId('final-count').textContent=`${Object.keys(state.locked).length} von ${state.ballots.length} eingegangenen Abgaben bestätigt. Nicht bestätigte Vorschläge sind nicht enthalten.`;
+ byId('final-list').innerHTML=rows.map(r=>`<section><h3>${r.p}. ${esc(r.title)}</h3>${['A','B'].map(g=>{
+  const members=r.locked.filter(x=>x.group===g);
+  return members.length?`<h4>Gruppe ${g}</h4><ul>${members.map(x=>`<li class="break">${person(x)} · ${rank(x)}</li>`).join('')}</ul>`:'';
+ }).join('')}</section>`).join('');
+ byId('final-dialog').showModal();
 }
 list.addEventListener('click',e=>{
  const b=e.target.closest('[data-set],[data-unset]');if(!b||b.disabled)return;
  const p=Number(b.closest('details').dataset.project);run('/api/lock',{id:b.dataset.set??b.dataset.unset,project:b.hasAttribute('data-set')?p:null,group:b.closest('[data-group]').dataset.group},p);
 });
 list.addEventListener('change',e=>{
- if(e.target.hasAttribute('data-expand')){const p=Number(e.target.dataset.expand);run('/api/groups',{project:p,enabled:e.target.checked},p);}
+ const target=e.target;
+ if(target.hasAttribute('data-expand')){const p=Number(target.dataset.expand);run('/api/groups',{project:p,enabled:target.checked},p,target.id);}
+ else if(target.hasAttribute('data-size')){
+  const p=Number(target.closest('details').dataset.project), group=target.closest('[data-group]').dataset.group;
+  run('/api/size',{project:p,group,size:target.value===''?null:Number(target.value)},p,target.id);
+ }
  else updateButtons();
 });
 list.addEventListener('submit',e=>{
@@ -360,6 +463,12 @@ byId('copy-link').onclick=async()=>{
  catch{const selection=getSelection(), range=document.createRange();range.selectNodeContents(byId('submit-link'));selection.removeAllRanges();selection.addRange(range);notice('Link markiert. Kopieren Sie ihn mit Strg+C.');}
 };
 byId('propose').onclick=()=>run('/api/propose',{});byId('refresh').onclick=loadLive;byId('export').onclick=csv;
+byId('confirm-all').onclick=()=>run('/api/confirm-all',{entries:window.ChallengeAllocation.pending(state)});
+byId('final-show').onclick=showFinal;
+byId('export-pdf').onclick=()=>{
+ if(demo){window.print();return;}
+ const link=document.createElement('a');link.href='/api/final.pdf';link.download='zusortierung.pdf';link.click();
+};
 byId('view-demo').onclick=activateDemo;byId('back-live').onclick=loadLive;
 byId('login').onsubmit=e=>{
  e.preventDefault();if(busy)return;const input=byId('password'),password=input.value;input.value='';
