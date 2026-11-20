@@ -24,6 +24,7 @@ async function check(){
   const open=async(url,selector)=>{await send('Page.navigate',{url});await wait(()=>ev(`document.readyState==='complete'&&!!document.querySelector(${JSON.stringify(selector)})`));};
   await send('Runtime.enable');
   await open(pathToFileURL(resolve('Testphase.html')).href,'#projekt-10');
+  assert.equal(await ev(`document.querySelector('#ballot-management').hidden`),true);
   assert.equal(await ev(`document.querySelectorAll('.allocation').length`),10);
   assert.equal(await ev(`document.querySelectorAll('[data-expand]').length`),10);
   assert.match(await ev(`document.querySelector('#projekt-10 summary').textContent`),/Finanzen aufgedeckt/);
@@ -115,9 +116,22 @@ async function check(){
   assert.match(csv,/Lea Weber/);
   await wait(()=>{try{return readFileSync(join(downloads,'zusortierung.pdf')).subarray(0,5).toString()==='%PDF-';}catch{return false;}});
   await ev(`document.querySelector('#final-close').click()`);
+  await ev(`document.querySelector('#ballot-management').open=true;document.querySelector('[data-delete-ballot]').click()`);
+  assert.equal(await ev(`document.querySelector('#delete-ballot-dialog').open`),true);
+  assert.match(await ev(`document.querySelector('#delete-ballot-target').textContent`),/Lea Weber.*dieHackies/);
+  assert.equal(await ev(`document.activeElement.id`),'delete-ballot-cancel');
+  await ev(`document.querySelector('#delete-ballot-cancel').click()`);
+  await wait(()=>ev(`!document.querySelector('#delete-ballot-dialog').open`));
+  assert.equal(await ev(`fetch('/api/prof').then(r=>r.json()).then(x=>x.ballots.length)`),1);
+  await ev(`document.querySelector('[data-delete-ballot]').click();document.querySelector('#delete-ballot-confirm').click()`);
+  await wait(()=>ev(`document.querySelector('#status').textContent.includes('Wunschzettel gelöscht')`));
+  assert.equal(await ev(`document.querySelectorAll('[data-delete-ballot]').length`),0);
+  assert.equal(await ev(`document.querySelector('#final-show').disabled`),true);
+  assert.equal(await ev(`document.activeElement.id`),'ballot-management-summary');
+  assert.deepEqual(await ev(`fetch('/api/prof').then(r=>r.json()).then(x=>[x.ballots,x.locked,x.proposal])`),[[],{},null]);
    await ev(`document.querySelector('#logout').click()`);await wait(()=>ev(`!document.querySelector('#signin').hidden`));
    assert.equal(await ev(`fetch('/api/prof').then(r=>r.status)`),401);
-   console.log('Chrome: QR, Maus/Touch, 320–430 px, Wunschbearbeitung, Sammelbestätigung und beide Downloads.');
+   console.log('Chrome: QR, Maus/Touch, 320–430 px, Wunschbearbeitung, Sammelbestätigung, Downloads und Löschdialog.');
    }finally{app.server.closeAllConnections();await new Promise(resolve=>app.server.close(resolve));}
   }
   assert.deepEqual(errors,[]);
