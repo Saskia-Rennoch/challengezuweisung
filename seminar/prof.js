@@ -6,6 +6,8 @@ const byId=id=>document.getElementById(id);
 const local=location.protocol==='file:';
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const list=byId('project-list');
+const ballotList=byId('ballot-list'), deleteDialog=byId('delete-ballot-dialog');
+let deleteId=null;
 let state=null, demo=false, busy=false, qrUrl='';
 const show=(id,on)=>byId(id).hidden=!on;
 function notice(text='',bad=false){byId('status').textContent=text;byId('status').classList.toggle('warn',bad);}
@@ -24,11 +26,13 @@ function updateButtons(){
  list.querySelectorAll('[data-set],[data-unset],[data-manual]').forEach(b=>b.disabled=busy||(b.hasAttribute('data-manual')&&!b.closest('form').elements.person.value));
  list.querySelectorAll('[data-expand]').forEach(b=>b.disabled=busy||b.dataset.blocked==='true');
  list.querySelectorAll('[data-size],select[name="person"]').forEach(b=>b.disabled=busy);
+ ballotList.querySelectorAll('[data-delete-ballot]').forEach(b=>b.disabled=busy);
 }
 function activateDemo(){state=demoRound();demo=true;notice();render();byId('propose').focus();}
 function rank(x){return `${x.rank}. Priorität`;}
 const person=x=>`${esc(x.label)}${x.team?` · ${esc(x.team)}`:''}`;
 const capacity=(r,g)=>r.sizes[g]??r.max;
+const ballotLabel=b=>`${b.name}${b.team?` · ${b.team}`:''} · Nr. ${b.id}`;
 
 function entry(x,confirm){
  const action=confirm?'Confirm':'Undo';
@@ -39,6 +43,12 @@ function render(){
  show('signin',!state&&!busy);show('work',!!state);show('demo-banner',demo);show('back-live',demo&&!local);
  show('session-controls',!local&&!!state);show('live-tabs',!local);
  show('view-demo',!demo&&!!state);show('refresh',!demo&&!!state);show('invite',!demo&&!!state);
+ show('ballot-management',!demo&&!!state);
+ const ballots=demo?null:state?.ballots;
+ ballotList.innerHTML=!ballots?'':ballots.length?`<ul class="members">${ballots.map(b=>{
+  const label=esc(ballotLabel(b));
+  return `<li class="wrap"><span class="member-name break">${label}</span><button type="button" data-delete-ballot="${esc(b.id)}" aria-label="Wunschzettel löschen: ${label}">Löschen</button></li>`;
+ }).join('')}</ul>`:'<p class="hint">Noch keine Wunschzettel abgegeben.</p>';
  byId('mode-label').textContent=demo?'Testphase':'Professorenansicht';
  if(!state){list.replaceChildren();byId('totals').replaceChildren();byId('warnings').replaceChildren();updateButtons();return;}
  if(!demo){
@@ -112,10 +122,28 @@ async function run(path,body,p,focusId){
  try{
   state=demo?updateDemo(path,body):await request(path,body);
   notice(path==='/api/propose'?'Vorschlag berechnet.':path==='/api/groups'?(body.enabled?'Gruppe B freigegeben.':'Gruppe B deaktiviert.'):
-   path==='/api/size'?'Maximale Gruppengröße aktualisiert.':path==='/api/confirm-all'?`${body.entries.length} Zusortierung(en) bestätigt.`:body.project===null?'Zuteilung aufgehoben.':'Zuteilung bestätigt.');
+   path==='/api/ballot/delete'?'Wunschzettel gelöscht.':path==='/api/size'?'Maximale Gruppengröße aktualisiert.':path==='/api/confirm-all'?`${body.entries.length} Zusortierung(en) bestätigt.`:body.project===null?'Zuteilung aufgehoben.':'Zuteilung bestätigt.');
  }catch(e){if(e.status===401)clearSession();notice(e.message,true);}
  finally{busy=false;render();if(p)((focusId&&byId(focusId))||byId(`projekt-${p}`)?.querySelector('summary'))?.focus();}
 }
+ballotList.addEventListener('click',e=>{
+ const button=e.target.closest('[data-delete-ballot]');
+ if(!button||busy||demo||!state)return;
+ const ballot=state.ballots.find(b=>b.id===button.dataset.deleteBallot);
+ if(!ballot)return;
+ deleteId=ballot.id;
+ deleteDialog.returnValue='cancel';
+ byId('delete-ballot-target').textContent=ballotLabel(ballot);
+ deleteDialog.showModal();
+});
+deleteDialog.addEventListener('close',async()=>{
+ const id=deleteId;
+ deleteId=null;
+ byId('delete-ballot-target').textContent='';
+ if(deleteDialog.returnValue!=='delete'||!id||busy||demo||!state)return;
+ await run('/api/ballot/delete',{id});
+ byId(state?'ballot-management-summary':'password').focus();
+});
 function csv(){
  const field=value=>`"${String(value??'').replace(/^\s*[=+\-@\t\r\n]/,"'$&").replaceAll('"','""')}"`;
  const text=['Nr.;Challenge;Gruppe;Name;Teamname;Priorität',...projectRows(state).flatMap(r=>r.locked.map(x=>`${r.p};${field(r.title)};${x.group};${field(x.label)};${field(x.team)};${x.rank}`))].join('\r\n');

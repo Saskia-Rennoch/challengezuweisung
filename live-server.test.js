@@ -56,6 +56,56 @@ async function ok(response) {
   return body;
 }
 
+test('only an admin can delete a ballot; its assignment, edit access and proposal disappear', async t => {
+  const f = await fixture(t);
+  const body = payload();
+  const removed = await f.submit(body);
+  const kept = await f.submit(payload({ name: 'Mika Weber' }));
+  await ok(await f.admin('/api/groups', { project: 5, enabled: true }));
+  await ok(await f.admin('/api/size', { project: 5, group: 'B', size: 2 }));
+  await ok(await f.admin('/api/lock', { id: removed.id, project: 5, group: 'B' }));
+  await ok(await f.admin('/api/lock', { id: kept.id, project: 2, group: 'A' }));
+  assert.ok((await ok(await f.admin('/api/propose', {}))).proposal);
+  assert.equal((await f.request('/api/ballot/delete', { id: removed.id })).status, 401);
+  assert.equal((await f.admin('/api/ballot/delete', { id: removed.id, other: true })).status, 400);
+  assert.equal((await f.admin('/api/ballot/delete', { id: 1 })).status, 400);
+  assert.equal((await f.admin('/api/ballot/delete', { id: '99' })).status, 404);
+  const state = await ok(await f.admin('/api/ballot/delete', { id: removed.id }));
+  assert.deepEqual(state.ballots.map(b => b.id), [kept.id]);
+  assert.deepEqual(state.locked, { [kept.id]: 2 });
+  assert.deepEqual(state.groups, { [kept.id]: 'A' });
+  assert.deepEqual(state.expanded, [5]);
+  assert.deepEqual(state.sizes, { 5: { B: 2 } });
+  assert.equal(state.proposal, null);
+  assert.deepEqual(state.proposalGroups, {});
+  assert.deepEqual(state.warnings, []);
+  const credentials = { editCode: removed.editCode, password };
+  assert.equal((await f.request('/api/ballot/load', credentials)).status, 401);
+  assert.equal((await f.request('/api/ballot/update', { ...credentials, ranks })).status, 401);
+  assert.equal((await f.admin('/api/ballot/delete', { id: removed.id })).status, 404);
+  assert.ok(!fs.readFileSync(f.roundFile, 'utf8').includes(body.receipt));
+});
+
+test('a deleted ballot ID is not reused after restart, even in an existing round without a counter', async t => {
+  const f = await fixture(t);
+  const [a, b, c] = await Promise.all([f.submit(), f.submit(), f.submit()]);
+  const last = [a, b, c].sort((x, y) => Number(y.id) - Number(x.id))[0];
+  await f.stop();
+  const stored = JSON.parse(fs.readFileSync(f.roundFile, 'utf8'));
+  delete stored.lastBallotNumber;
+  fs.writeFileSync(f.roundFile, JSON.stringify(stored));
+  const upgraded = await f.start();
+  await ok(await upgraded.admin('/api/ballot/delete', { id: last.id }));
+  await f.stop();
+  const restarted = await f.start();
+  const replacement = await restarted.submit();
+  assert.ok(Number(replacement.id) > Number(last.id));
+  assert.equal((await restarted.admin('/api/ballot/delete', { id: last.id })).status, 404);
+  const state = await ok(await restarted.admin());
+  assert.equal(state.ballots.length, 3);
+  assert.equal(new Set(state.ballots.map(b => b.id)).size, 3);
+});
+
 test('ten-choice intake validates the request and exposes only ballot fields to admins', async t => {
   const f = await fixture(t);
   const body = payload();
@@ -264,6 +314,11 @@ test('concurrent submissions stop at 27 and a receipt retry still works after th
   assert.equal(results.filter(r => r.status === 409).length, 1);
   assert.deepEqual(await f.submit(body), first);
   assert.equal((await ok(await f.admin())).ballots.length, 27);
+  assert.equal((await ok(await f.admin('/api/ballot/delete', { id: first.id }))).ballots.length, 26);
+  const replacement = await f.submit();
+  assert.equal(replacement.id, '28');
+  assert.equal((await ok(await f.admin())).ballots.length, 27);
+  assert.equal((await f.request('/api/ballot', payload())).status, 409);
 });
 
 test('the default live round is isolated from the legacy round', t => {

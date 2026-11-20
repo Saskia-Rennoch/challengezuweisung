@@ -45,7 +45,7 @@ const STATIC = new Map([
   ['/assets/challenges.js', ['seminar/challenges.js', 'text/javascript']],
   ['/assets/allocation.js', ['seminar/allocation.js', 'text/javascript']],
 ]);
-const ADMIN = new Set(['GET /api/prof', 'GET /api/qr', 'GET /api/final.pdf', 'POST /api/confirm-all', 'POST /api/propose', 'POST /api/lock', 'POST /api/groups', 'POST /api/size']);
+const ADMIN = new Set(['GET /api/prof', 'GET /api/qr', 'GET /api/final.pdf', 'POST /api/confirm-all', 'POST /api/propose', 'POST /api/lock', 'POST /api/groups', 'POST /api/size', 'POST /api/ballot/delete']);
 const CSP = "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; " +
   "connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'";
 
@@ -121,6 +121,9 @@ function createServer({
   const cookie = (id, age, req) => `seminar_admin=${id}; Path=/api/; HttpOnly; SameSite=Strict; Max-Age=${age}${req.socket.encrypted || origin.protocol === 'https:' && req.headers.host === origin.host ? '; Secure' : ''}`;
   const file = path.resolve(roundFile);
   let round = loadRound(file);
+  // Older rounds have no counter. Preserve it from the first write so stale admin views cannot target a reused ID.
+  round.lastBallotNumber ??= Math.max(0, ...round.ballots.map(b => Number(b.id)));
+  const isAdmin = req => sessions.get(sessionId(req)) > Date.now();
   function newEditCode() {
     let code;
     do { code=String(randomInt(10000)).padStart(4,'0'); }
@@ -193,9 +196,9 @@ function createServer({
   async function retrySubmission(req, res, ballot, { name, team, ranks, password }) {
     const authenticated = await authenticateStudent(req, res, ballot, password);
     if (authenticated === undefined) return;
-    // An edit may have completed during authentication.
+    // An edit or deletion may have completed during authentication.
     const current = round.ballots.find(({ id }) => id === ballot.id);
-    if (!authenticated || current.name !== name || current.team !== team ||
+    if (!authenticated || !current || current.name !== name || current.team !== team ||
         !current.ranks.every((project, i) => project === ranks[i])) {
       return error(res, 409, 'Für diese Abgabe wurde bereits ein Wunschzettel gespeichert.');
     }
@@ -233,7 +236,7 @@ function createServer({
       res.setHeader('Set-Cookie', cookie('', 0, req));
       return json(res, 200, { ok: true });
     }
-    if (ADMIN.has(route) && !(sessions.get(sessionId(req)) > now)) return error(res, 401, 'Anmeldung erforderlich.');
+    if (ADMIN.has(route) && !isAdmin(req)) return error(res, 401, 'Anmeldung erforderlich.');
     if (route === 'GET /api/prof') return json(res, 200, state());
     if (route === 'GET /api/qr') {
       return send(res, 200, 'image/svg+xml', await QRCode.toString(submitUrl(), { type: 'svg' }));
@@ -310,6 +313,22 @@ function createServer({
       }
       return updateAllocation(res, { locked, groups });
     }
+    if (route === 'POST /api/ballot/delete') {
+      const body = await readJson(req, res);
+      if (!body) return;
+      if (!isAdmin(req)) return error(res, 401, 'Anmeldung erforderlich.');
+      const { id } = body;
+      if (Object.keys(body).length !== 1 || typeof id !== 'string' || !/^\d{2,}$/.test(id)) {
+        return error(res, 400, 'Ungültige Wunschzettel-Kennung.');
+      }
+      const ballots = round.ballots.filter(ballot => ballot.id !== id);
+      if (ballots.length === round.ballots.length) return error(res, 404, 'Dieser Wunschzettel existiert nicht mehr.');
+      const locked = { ...round.locked }, groups = { ...round.groups };
+      delete locked[id];
+      delete groups[id];
+      commit({ ballots, locked, groups, ...NO_PROPOSAL });
+      return json(res, 200, state());
+    }
     if (route === 'POST /api/ballot') {
       const body = await readJson(req, res);
       if (!body) return;
@@ -334,10 +353,11 @@ function createServer({
       existing = previous();
       if (existing) return retrySubmission(req, res, existing, { name, team, ranks, password });
       if (full()) return roundFull();
-      const id = ballotId(round.ballots.length);
+      const lastBallotNumber = round.lastBallotNumber + 1;
+      const id = ballotId(lastBallotNumber - 1);
       const editCode=newEditCode();
       const ballot = { id, name, team, ranks, receipt, editCode, salt, passwordHash };
-      commit({ ballots: [...round.ballots, ballot], ...NO_PROPOSAL });
+      commit({ ballots: [...round.ballots, ballot], lastBallotNumber, ...NO_PROPOSAL });
       return json(res, 200, ballotReceipt(ballot));
     }
     const updating = route === 'POST /api/ballot/update';
@@ -356,8 +376,9 @@ function createServer({
       const authenticated = await authenticateStudent(req, res, matched, password);
       if (authenticated === undefined) return;
       if (!authenticated) return error(res, 401, 'Bearbeitungscode oder Passwort ist falsch.');
-      // Read the current ballot after authentication so a concurrent edit is not lost.
+      // Re-read after authentication in case it was edited or deleted.
       const index = round.ballots.findIndex(ballot => ballot.id === matched.id);
+      if (index === -1) return error(res, 401, 'Bearbeitungscode oder Passwort ist falsch.');
       let current = round.ballots[index];
       const upgrade = !currentCode.test(current.editCode);
       if (upgrade) current = { ...current, previousEditCode:current.editCode, editCode:newEditCode() };
